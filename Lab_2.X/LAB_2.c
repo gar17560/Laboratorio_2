@@ -29,18 +29,63 @@
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
 #include <xc.h>
+#include <stdint.h>
 
+// Variables--------------------------------------------------------------------
+uint8_t contador = 0;
+uint8_t a = 0;
+uint8_t b = 0;
+
+
+//Funciones---------------------------------------------------------------------
 void config(void);
 
+
+
+//Loop principal----------------------------------------------------------------
 void main(void) {
-    
-    
-    
-    
-  
-    
+    config();
+    contador = 0x00;
+    PORTD = contador;
+    while(1){
+        PORTD = contador;
+        PORTC = 0xFF;
+        PORTEbits.RE0 = 1;
+        if(PORTBbits.RB0 == 1){
+            a=0;
+        }
+        if(PORTBbits.RB1 == 1){
+            b=0;
+        }
+        
+    }
     return;
 }
+
+void __interrupt() isr(void){
+
+    if (INTCONbits.RBIF == 1){
+        //uint8_t hola;
+        //hola = PORTB;
+        if (PORTBbits.RB0==0 && a==0){    
+            a = 1;
+            if(contador >0x00){
+                contador--;
+            }
+        }
+        if (PORTBbits.RB1==0 && b ==0){    
+            b = 1;
+            if(contador < 0xFF){
+                contador++;
+        }
+        }
+//        PORTD = contador;
+        INTCONbits.RBIF = 0;
+        
+    }
+    return;
+}
+
 
 
 void config(void){
@@ -52,7 +97,7 @@ void config(void){
     PORTC = 0x00;   //Todo el puerto C como salida
     
     PORTE = 0x0;
-    ANSEL = 0x01;  // ANS0 como  
+    ANSEL = 0x01;  // ANS0 como entrada analogica
     TRISE = 0x0;   //Todo el puerto E como salida
     
     PORTB = 0x00;
@@ -60,7 +105,7 @@ void config(void){
     ANSELH = 0x00;
     WPUB = 0b11111111;
     OPTION_REGbits.nRBPU = 0;  //Puertp B como entrada con PULL-UP
-    IOCB = 0x03;                //Habilitamos las interrupciones para el puerto B
+    IOCB = 0x03;                //Habilitamos las interrupciones para el puerto B en RB0 y RB1
     
     PORTA = 0x00;
     TRISA = 0x01;       // Puerto A0 como entrada
@@ -70,10 +115,10 @@ void config(void){
     
     
     ////////////////////////////////////////////////////////////////////////////
-    
+    ////    INTERRUPCIONES PUERTO B
+    ////////////////////////////////////////////////////////////////////////////
     ei();
     INTCONbits.RBIE = 1;
-    
-    
+    INTCONbits.RBIF = 0;
     
 }

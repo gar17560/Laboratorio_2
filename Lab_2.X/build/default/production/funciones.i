@@ -2501,11 +2501,3 @@ extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
 # 9 "funciones.c" 2
 
-
-void main(void) {
-
-
-
-
-    return;
-}
