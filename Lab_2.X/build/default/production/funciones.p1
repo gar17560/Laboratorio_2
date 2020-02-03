@@ -55,6 +55,53 @@ Version 4.0 HI-TECH Software Intermediate Code
 "553
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 553: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
 [v _PIR1bits `VS18 ~T0 @X0 0 e@12 ]
+"1352
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 1352:     struct {
+[s S50 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S50 . PS PSA T0SE T0CS INTEDG nRBPU ]
+"1360
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 1360:     struct {
+[s S51 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S51 . PS0 PS1 PS2 ]
+"1351
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 1351: typedef union {
+[u S49 `S50 1 `S51 1 ]
+[n S49 . . . ]
+"1366
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 1366: extern volatile OPTION_REGbits_t OPTION_REGbits __attribute__((address(0x081)));
+[v _OPTION_REGbits `VS49 ~T0 @X0 0 e@129 ]
+"465
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 465:     struct {
+[s S16 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S16 . RBIF INTF T0IF RBIE INTE T0IE PEIE GIE ]
+"475
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 475:     struct {
+[s S17 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S17 . . TMR0IF . TMR0IE ]
+"464
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 464: typedef union {
+[u S15 `S16 1 `S17 1 ]
+[n S15 . . . ]
+"482
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 482: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
+[v _INTCONbits `VS15 ~T0 @X0 0 e@11 ]
+"59
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 59: extern volatile unsigned char TMR0 __attribute__((address(0x001)));
+[v _TMR0 `Vuc ~T0 @X0 0 e@1 ]
+"420
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 420:     struct {
+[s S14 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S14 . RE0 RE1 RE2 RE3 ]
+"419
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 419: typedef union {
+[u S13 `S14 1 ]
+[n S13 . . ]
+"427
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 427: extern volatile PORTEbits_t PORTEbits __attribute__((address(0x009)));
+[v _PORTEbits `VS13 ~T0 @X0 0 e@9 ]
+"290
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 290: extern volatile unsigned char PORTC __attribute__((address(0x007)));
+[v _PORTC `Vuc ~T0 @X0 0 e@7 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -656,4 +703,439 @@ Version 4.0 HI-TECH Software Intermediate Code
 "130
 [; ;funciones.c: 130: }
 [e :UE 138 ]
+}
+"132
+[; ;funciones.c: 132: void init_TMR0(uint8_t valor_tmr){
+[v _init_TMR0 `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _init_TMR0 ]
+[v _valor_tmr `uc ~T0 @X0 1 r1 ]
+[f ]
+"134
+[; ;funciones.c: 134:     OPTION_REGbits.T0CS = 0;
+[e = . . _OPTION_REGbits 0 3 -> -> 0 `i `uc ]
+"135
+[; ;funciones.c: 135:     OPTION_REGbits.PSA = 0;
+[e = . . _OPTION_REGbits 0 1 -> -> 0 `i `uc ]
+"137
+[; ;funciones.c: 137:     OPTION_REGbits.PS2 = 1;
+[e = . . _OPTION_REGbits 1 2 -> -> 1 `i `uc ]
+"138
+[; ;funciones.c: 138:     OPTION_REGbits.PS1 = 0;
+[e = . . _OPTION_REGbits 1 1 -> -> 0 `i `uc ]
+"139
+[; ;funciones.c: 139:     OPTION_REGbits.PS0 = 0;
+[e = . . _OPTION_REGbits 1 0 -> -> 0 `i `uc ]
+"141
+[; ;funciones.c: 141:     INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"143
+[; ;funciones.c: 143:     TMR0 = valor_tmr;
+[e = _TMR0 _valor_tmr ]
+"144
+[; ;funciones.c: 144: }
+[e :UE 158 ]
+}
+"147
+[; ;funciones.c: 147: void hexa_display(uint8_t adc_valor, uint8_t transis ){
+[v _hexa_display `(v ~T0 @X0 1 ef2`uc`uc ]
+{
+[e :U _hexa_display ]
+[v _adc_valor `uc ~T0 @X0 1 r1 ]
+[v _transis `uc ~T0 @X0 1 r2 ]
+[f ]
+"148
+[; ;funciones.c: 148:     uint8_t valor1;
+[v _valor1 `uc ~T0 @X0 1 a ]
+"149
+[; ;funciones.c: 149:     uint8_t valor2;
+[v _valor2 `uc ~T0 @X0 1 a ]
+"151
+[; ;funciones.c: 151:     valor1 = adc_valor & 0x0F;
+[e = _valor1 -> & -> _adc_valor `i -> 15 `i `uc ]
+"152
+[; ;funciones.c: 152:     valor2 = (adc_valor & 0xF0)>>4 ;
+[e = _valor2 -> >> & -> _adc_valor `i -> 240 `i -> 4 `i `uc ]
+"155
+[; ;funciones.c: 155:     switch(transis){
+[e $U 161  ]
+{
+"156
+[; ;funciones.c: 156:         case 0:
+[e :U 162 ]
+"157
+[; ;funciones.c: 157:             PORTEbits.RE0 = 0;
+[e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
+"158
+[; ;funciones.c: 158:             PORTEbits.RE1 = 1;
+[e = . . _PORTEbits 0 1 -> -> 1 `i `uc ]
+"159
+[; ;funciones.c: 159:             switch(valor2){
+[e $U 164  ]
+{
+"160
+[; ;funciones.c: 160:                 case 0:
+[e :U 165 ]
+"161
+[; ;funciones.c: 161:                     PORTC = 0x3F;
+[e = _PORTC -> -> 63 `i `uc ]
+"162
+[; ;funciones.c: 162:                     break;
+[e $U 163  ]
+"163
+[; ;funciones.c: 163:                 case 1:
+[e :U 166 ]
+"164
+[; ;funciones.c: 164:                     PORTC = 0x06;
+[e = _PORTC -> -> 6 `i `uc ]
+"165
+[; ;funciones.c: 165:                     break;
+[e $U 163  ]
+"166
+[; ;funciones.c: 166:                 case 2:
+[e :U 167 ]
+"167
+[; ;funciones.c: 167:                     PORTC = 0x5B;
+[e = _PORTC -> -> 91 `i `uc ]
+"168
+[; ;funciones.c: 168:                     break;
+[e $U 163  ]
+"169
+[; ;funciones.c: 169:                 case 3:
+[e :U 168 ]
+"170
+[; ;funciones.c: 170:                     PORTC = 0x4F;
+[e = _PORTC -> -> 79 `i `uc ]
+"171
+[; ;funciones.c: 171:                     break;
+[e $U 163  ]
+"172
+[; ;funciones.c: 172:                 case 4:
+[e :U 169 ]
+"173
+[; ;funciones.c: 173:                     PORTC = 0x66;
+[e = _PORTC -> -> 102 `i `uc ]
+"174
+[; ;funciones.c: 174:                     break;
+[e $U 163  ]
+"175
+[; ;funciones.c: 175:                 case 5:
+[e :U 170 ]
+"176
+[; ;funciones.c: 176:                     PORTC = 0x6D;
+[e = _PORTC -> -> 109 `i `uc ]
+"177
+[; ;funciones.c: 177:                     break;
+[e $U 163  ]
+"178
+[; ;funciones.c: 178:                 case 6:
+[e :U 171 ]
+"179
+[; ;funciones.c: 179:                     PORTC = 0x7D;
+[e = _PORTC -> -> 125 `i `uc ]
+"180
+[; ;funciones.c: 180:                     break;
+[e $U 163  ]
+"181
+[; ;funciones.c: 181:                 case 7:
+[e :U 172 ]
+"182
+[; ;funciones.c: 182:                     PORTC = 0x07;
+[e = _PORTC -> -> 7 `i `uc ]
+"183
+[; ;funciones.c: 183:                     break;
+[e $U 163  ]
+"184
+[; ;funciones.c: 184:                 case 8:
+[e :U 173 ]
+"185
+[; ;funciones.c: 185:                     PORTC = 0x7F;
+[e = _PORTC -> -> 127 `i `uc ]
+"186
+[; ;funciones.c: 186:                     break;
+[e $U 163  ]
+"187
+[; ;funciones.c: 187:                 case 9:
+[e :U 174 ]
+"188
+[; ;funciones.c: 188:                     PORTC = 0x67;
+[e = _PORTC -> -> 103 `i `uc ]
+"189
+[; ;funciones.c: 189:                     break;
+[e $U 163  ]
+"190
+[; ;funciones.c: 190:                 case 10:
+[e :U 175 ]
+"191
+[; ;funciones.c: 191:                     PORTC = 0x77;
+[e = _PORTC -> -> 119 `i `uc ]
+"192
+[; ;funciones.c: 192:                     break;
+[e $U 163  ]
+"193
+[; ;funciones.c: 193:                 case 11:
+[e :U 176 ]
+"194
+[; ;funciones.c: 194:                     PORTC = 0x7C;
+[e = _PORTC -> -> 124 `i `uc ]
+"195
+[; ;funciones.c: 195:                     break;
+[e $U 163  ]
+"196
+[; ;funciones.c: 196:                 case 12:
+[e :U 177 ]
+"197
+[; ;funciones.c: 197:                     PORTC = 0x39;
+[e = _PORTC -> -> 57 `i `uc ]
+"198
+[; ;funciones.c: 198:                     break;
+[e $U 163  ]
+"199
+[; ;funciones.c: 199:                 case 13:
+[e :U 178 ]
+"200
+[; ;funciones.c: 200:                     PORTC = 0x5E;
+[e = _PORTC -> -> 94 `i `uc ]
+"201
+[; ;funciones.c: 201:                     break;
+[e $U 163  ]
+"202
+[; ;funciones.c: 202:                 case 14:
+[e :U 179 ]
+"203
+[; ;funciones.c: 203:                     PORTC = 0x79;
+[e = _PORTC -> -> 121 `i `uc ]
+"204
+[; ;funciones.c: 204:                     break;
+[e $U 163  ]
+"205
+[; ;funciones.c: 205:                 case 15:
+[e :U 180 ]
+"206
+[; ;funciones.c: 206:                     PORTC = 0x71;
+[e = _PORTC -> -> 113 `i `uc ]
+"207
+[; ;funciones.c: 207:                     break;
+[e $U 163  ]
+"208
+[; ;funciones.c: 208:             }
+}
+[e $U 163  ]
+[e :U 164 ]
+[e [\ -> _valor2 `i , $ -> 0 `i 165
+ , $ -> 1 `i 166
+ , $ -> 2 `i 167
+ , $ -> 3 `i 168
+ , $ -> 4 `i 169
+ , $ -> 5 `i 170
+ , $ -> 6 `i 171
+ , $ -> 7 `i 172
+ , $ -> 8 `i 173
+ , $ -> 9 `i 174
+ , $ -> 10 `i 175
+ , $ -> 11 `i 176
+ , $ -> 12 `i 177
+ , $ -> 13 `i 178
+ , $ -> 14 `i 179
+ , $ -> 15 `i 180
+ 163 ]
+[e :U 163 ]
+"210
+[; ;funciones.c: 210:             break;
+[e $U 160  ]
+"211
+[; ;funciones.c: 211:         case 1:
+[e :U 181 ]
+"212
+[; ;funciones.c: 212:             PORTEbits.RE0 = 1;
+[e = . . _PORTEbits 0 0 -> -> 1 `i `uc ]
+"213
+[; ;funciones.c: 213:             PORTEbits.RE1 = 0;
+[e = . . _PORTEbits 0 1 -> -> 0 `i `uc ]
+"214
+[; ;funciones.c: 214:             switch(valor1){
+[e $U 183  ]
+{
+"215
+[; ;funciones.c: 215:                 case 0:
+[e :U 184 ]
+"216
+[; ;funciones.c: 216:                     PORTC = 0x3F;
+[e = _PORTC -> -> 63 `i `uc ]
+"217
+[; ;funciones.c: 217:                     break;
+[e $U 182  ]
+"218
+[; ;funciones.c: 218:                 case 1:
+[e :U 185 ]
+"219
+[; ;funciones.c: 219:                     PORTC = 0x06;
+[e = _PORTC -> -> 6 `i `uc ]
+"220
+[; ;funciones.c: 220:                     break;
+[e $U 182  ]
+"221
+[; ;funciones.c: 221:                 case 2:
+[e :U 186 ]
+"222
+[; ;funciones.c: 222:                     PORTC = 0x5B;
+[e = _PORTC -> -> 91 `i `uc ]
+"223
+[; ;funciones.c: 223:                     break;
+[e $U 182  ]
+"224
+[; ;funciones.c: 224:                 case 3:
+[e :U 187 ]
+"225
+[; ;funciones.c: 225:                     PORTC = 0x4F;
+[e = _PORTC -> -> 79 `i `uc ]
+"226
+[; ;funciones.c: 226:                     break;
+[e $U 182  ]
+"227
+[; ;funciones.c: 227:                 case 4:
+[e :U 188 ]
+"228
+[; ;funciones.c: 228:                     PORTC = 0x66;
+[e = _PORTC -> -> 102 `i `uc ]
+"229
+[; ;funciones.c: 229:                     break;
+[e $U 182  ]
+"230
+[; ;funciones.c: 230:                 case 5:
+[e :U 189 ]
+"231
+[; ;funciones.c: 231:                     PORTC = 0x6D;
+[e = _PORTC -> -> 109 `i `uc ]
+"232
+[; ;funciones.c: 232:                     break;
+[e $U 182  ]
+"233
+[; ;funciones.c: 233:                 case 6:
+[e :U 190 ]
+"234
+[; ;funciones.c: 234:                     PORTC = 0x7D;
+[e = _PORTC -> -> 125 `i `uc ]
+"235
+[; ;funciones.c: 235:                     break;
+[e $U 182  ]
+"236
+[; ;funciones.c: 236:                 case 7:
+[e :U 191 ]
+"237
+[; ;funciones.c: 237:                     PORTC = 0x07;
+[e = _PORTC -> -> 7 `i `uc ]
+"238
+[; ;funciones.c: 238:                     break;
+[e $U 182  ]
+"239
+[; ;funciones.c: 239:                 case 8:
+[e :U 192 ]
+"240
+[; ;funciones.c: 240:                     PORTC = 0x7F;
+[e = _PORTC -> -> 127 `i `uc ]
+"241
+[; ;funciones.c: 241:                     break;
+[e $U 182  ]
+"242
+[; ;funciones.c: 242:                 case 9:
+[e :U 193 ]
+"243
+[; ;funciones.c: 243:                     PORTC = 0x67;
+[e = _PORTC -> -> 103 `i `uc ]
+"244
+[; ;funciones.c: 244:                     break;
+[e $U 182  ]
+"245
+[; ;funciones.c: 245:                 case 10:
+[e :U 194 ]
+"246
+[; ;funciones.c: 246:                     PORTC = 0x77;
+[e = _PORTC -> -> 119 `i `uc ]
+"247
+[; ;funciones.c: 247:                     break;
+[e $U 182  ]
+"248
+[; ;funciones.c: 248:                 case 11:
+[e :U 195 ]
+"249
+[; ;funciones.c: 249:                     PORTC = 0x7C;
+[e = _PORTC -> -> 124 `i `uc ]
+"250
+[; ;funciones.c: 250:                     break;
+[e $U 182  ]
+"251
+[; ;funciones.c: 251:                 case 12:
+[e :U 196 ]
+"252
+[; ;funciones.c: 252:                     PORTC = 0x39;
+[e = _PORTC -> -> 57 `i `uc ]
+"253
+[; ;funciones.c: 253:                     break;
+[e $U 182  ]
+"254
+[; ;funciones.c: 254:                 case 13:
+[e :U 197 ]
+"255
+[; ;funciones.c: 255:                     PORTC = 0x5E;
+[e = _PORTC -> -> 94 `i `uc ]
+"256
+[; ;funciones.c: 256:                     break;
+[e $U 182  ]
+"257
+[; ;funciones.c: 257:                 case 14:
+[e :U 198 ]
+"258
+[; ;funciones.c: 258:                     PORTC = 0x79;
+[e = _PORTC -> -> 121 `i `uc ]
+"259
+[; ;funciones.c: 259:                     break;
+[e $U 182  ]
+"260
+[; ;funciones.c: 260:                 case 15:
+[e :U 199 ]
+"261
+[; ;funciones.c: 261:                     PORTC = 0x71;
+[e = _PORTC -> -> 113 `i `uc ]
+"262
+[; ;funciones.c: 262:                     break;
+[e $U 182  ]
+"263
+[; ;funciones.c: 263:             }
+}
+[e $U 182  ]
+[e :U 183 ]
+[e [\ -> _valor1 `i , $ -> 0 `i 184
+ , $ -> 1 `i 185
+ , $ -> 2 `i 186
+ , $ -> 3 `i 187
+ , $ -> 4 `i 188
+ , $ -> 5 `i 189
+ , $ -> 6 `i 190
+ , $ -> 7 `i 191
+ , $ -> 8 `i 192
+ , $ -> 9 `i 193
+ , $ -> 10 `i 194
+ , $ -> 11 `i 195
+ , $ -> 12 `i 196
+ , $ -> 13 `i 197
+ , $ -> 14 `i 198
+ , $ -> 15 `i 199
+ 182 ]
+[e :U 182 ]
+"264
+[; ;funciones.c: 264:             break;
+[e $U 160  ]
+"265
+[; ;funciones.c: 265:     }
+}
+[e $U 160  ]
+[e :U 161 ]
+[e [\ -> _transis `i , $ -> 0 `i 162
+ , $ -> 1 `i 181
+ 160 ]
+[e :U 160 ]
+"268
+[; ;funciones.c: 268: }
+[e :UE 159 ]
 }

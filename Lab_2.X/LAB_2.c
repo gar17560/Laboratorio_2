@@ -32,11 +32,15 @@
 #include <stdint.h>
 #include "funciones.h"
 
+
+#define _XTAL_FREQ 4000000 //Frecuencia de trabajo
+
 // Variables--------------------------------------------------------------------
 uint8_t contador = 0;
 uint8_t a = 0;
 uint8_t b = 0;
 uint8_t valor_adc = 0x00;
+uint8_t transis = 0x01;
 
 
 //Funciones---------------------------------------------------------------------
@@ -48,13 +52,12 @@ void config(void);
 void main(void) {
     config();
     init_ADC(0x00);                      // función del ADC con AN0
+    init_TMR0(0xFF);
     
     contador = 0x00;
     PORTD = contador;
     while(1){
         PORTD = contador;
-        PORTC = valor_adc;
-        PORTEbits.RE0 = 1;
         if(PORTBbits.RB0 == 1){
             a=0;
         }
@@ -65,10 +68,18 @@ void main(void) {
         ADCON0bits.GO = 1;
         while(ADCON0bits.GO == 1){
             
-        }
-        
-        
+        }    
+    if (valor_adc > contador){
+        PORTEbits.RE2 = 1;
     }
+    
+    if (valor_adc < contador){
+        PORTEbits.RE2 = 0;
+    }
+    
+    }
+    
+    
     return;
 }
 
@@ -95,6 +106,19 @@ void __interrupt() isr(void){
         }
 //        PORTD = contador;
         INTCONbits.RBIF = 0;   
+    }
+    
+    if(INTCONbits.T0IF == 1){
+        hexa_display(valor_adc, transis );
+        switch(transis){
+            case 0:
+                transis = 0x01;
+                break;
+            case 1:
+                transis = 0x00;
+                break;
+        }
+    INTCONbits.T0IF = 0;
     }
     return;
 }

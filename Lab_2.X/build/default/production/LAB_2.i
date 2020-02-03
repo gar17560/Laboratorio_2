@@ -2653,7 +2653,12 @@ typedef uint16_t uintptr_t;
 
 
 void init_ADC(uint8_t channel);
+void init_TMR0(uint8_t valor_tmr);
+void hexa_display(uint8_t adc_valor, uint8_t transis );
 # 33 "LAB_2.c" 2
+
+
+
 
 
 
@@ -2661,6 +2666,7 @@ uint8_t contador = 0;
 uint8_t a = 0;
 uint8_t b = 0;
 uint8_t valor_adc = 0x00;
+uint8_t transis = 0x01;
 
 
 
@@ -2672,13 +2678,12 @@ void config(void);
 void main(void) {
     config();
     init_ADC(0x00);
+    init_TMR0(0xFF);
 
     contador = 0x00;
     PORTD = contador;
     while(1){
         PORTD = contador;
-        PORTC = valor_adc;
-        PORTEbits.RE0 = 1;
         if(PORTBbits.RB0 == 1){
             a=0;
         }
@@ -2690,9 +2695,17 @@ void main(void) {
         while(ADCON0bits.GO == 1){
 
         }
+    if (valor_adc > contador){
+        PORTEbits.RE2 = 1;
+    }
 
+    if (valor_adc < contador){
+        PORTEbits.RE2 = 0;
+    }
 
     }
+
+
     return;
 }
 
@@ -2719,6 +2732,19 @@ void __attribute__((picinterrupt(("")))) isr(void){
         }
 
         INTCONbits.RBIF = 0;
+    }
+
+    if(INTCONbits.T0IF == 1){
+        hexa_display(valor_adc, transis );
+        switch(transis){
+            case 0:
+                transis = 0x01;
+                break;
+            case 1:
+                transis = 0x00;
+                break;
+        }
+    INTCONbits.T0IF = 0;
     }
     return;
 }

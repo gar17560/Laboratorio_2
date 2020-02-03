@@ -36,8 +36,8 @@
 
 
 void init_ADC(uint8_t channel);
-        
-
+void init_TMR0(uint8_t valor_tmr);
+void hexa_display(uint8_t adc_valor, uint8_t transis );
 
 
 #endif	/* XC_HEADER_TEMPLATE_H */
