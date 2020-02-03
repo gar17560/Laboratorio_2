@@ -1,2 +1,3 @@
 build/default/production/funciones.p1:  \
-funciones.c 
+funciones.c  \
+funciones.h 

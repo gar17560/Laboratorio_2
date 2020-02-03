@@ -2645,11 +2645,22 @@ typedef int16_t intptr_t;
 typedef uint16_t uintptr_t;
 # 32 "LAB_2.c" 2
 
+# 1 "./funciones.h" 1
+# 35 "./funciones.h"
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c90\\stdint.h" 1 3
+# 35 "./funciones.h" 2
+
+
+
+void init_ADC(uint8_t channel);
+# 33 "LAB_2.c" 2
+
 
 
 uint8_t contador = 0;
 uint8_t a = 0;
 uint8_t b = 0;
+uint8_t valor_adc = 0x00;
 
 
 
@@ -2660,11 +2671,13 @@ void config(void);
 
 void main(void) {
     config();
+    init_ADC(0x00);
+
     contador = 0x00;
     PORTD = contador;
     while(1){
         PORTD = contador;
-        PORTC = 0xFF;
+        PORTC = valor_adc;
         PORTEbits.RE0 = 1;
         if(PORTBbits.RB0 == 1){
             a=0;
@@ -2673,11 +2686,21 @@ void main(void) {
             b=0;
         }
 
+        ADCON0bits.GO = 1;
+        while(ADCON0bits.GO == 1){
+
+        }
+
+
     }
     return;
 }
 
 void __attribute__((picinterrupt(("")))) isr(void){
+    if(PIR1bits.ADIF == 1){
+        valor_adc = ADRESH;
+        PIR1bits.ADIF = 0;
+    }
 
     if (INTCONbits.RBIF == 1){
 
@@ -2696,7 +2719,6 @@ void __attribute__((picinterrupt(("")))) isr(void){
         }
 
         INTCONbits.RBIF = 0;
-
     }
     return;
 }
@@ -2735,5 +2757,6 @@ void config(void){
     (INTCONbits.GIE = 1);
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
+    INTCONbits.PEIE = 1;
 
 }

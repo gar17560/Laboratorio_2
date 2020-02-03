@@ -1,5 +1,5 @@
 /*
- * File:   Laboratorio_2.c
+ * File:   LAB_2.c
  * Author: Miguel García
  * Carné: 17560
  * Electrónica digital 2
@@ -30,11 +30,13 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include "funciones.h"
 
 // Variables--------------------------------------------------------------------
 uint8_t contador = 0;
 uint8_t a = 0;
 uint8_t b = 0;
+uint8_t valor_adc = 0x00;
 
 
 //Funciones---------------------------------------------------------------------
@@ -45,11 +47,13 @@ void config(void);
 //Loop principal----------------------------------------------------------------
 void main(void) {
     config();
+    init_ADC(0x00);                      // función del ADC con AN0
+    
     contador = 0x00;
     PORTD = contador;
     while(1){
         PORTD = contador;
-        PORTC = 0xFF;
+        PORTC = valor_adc;
         PORTEbits.RE0 = 1;
         if(PORTBbits.RB0 == 1){
             a=0;
@@ -58,12 +62,22 @@ void main(void) {
             b=0;
         }
         
+        ADCON0bits.GO = 1;
+        while(ADCON0bits.GO == 1){
+            
+        }
+        
+        
     }
     return;
 }
 
 void __interrupt() isr(void){
-
+    if(PIR1bits.ADIF == 1){
+        valor_adc = ADRESH;
+        PIR1bits.ADIF = 0;
+    }
+    
     if (INTCONbits.RBIF == 1){
         //uint8_t hola;
         //hola = PORTB;
@@ -80,8 +94,7 @@ void __interrupt() isr(void){
         }
         }
 //        PORTD = contador;
-        INTCONbits.RBIF = 0;
-        
+        INTCONbits.RBIF = 0;   
     }
     return;
 }
@@ -120,5 +133,6 @@ void config(void){
     ei();
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
+    INTCONbits.PEIE = 1;
     
 }

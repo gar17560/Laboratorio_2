@@ -32,8 +32,10 @@
 #define	XC_HEADER_TEMPLATE_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
+#include <stdint.h>
 
-    
+
+void init_ADC(uint8_t channel);
         
 
 
